@@ -1,5 +1,6 @@
 package com.dam.adp.atmapi.models;
 
+import com.dam.adp.atmapi.models.enums.Nivel;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -7,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -24,15 +26,16 @@ public class EventoLog {
 
     @NotNull
     @Column(name = "fecha_hora", nullable = false)
-    private Instant fechaHora;
+    private LocalDateTime fechaHora;
 
     @Size(max = 20)
     @Column(name = "codigo_error", length = 20)
     private String codigoError;
 
-    @Size(max = 20)
+    @Enumerated(EnumType.STRING)
+    @NotNull
     @Column(name = "nivel", length = 20)
-    private String nivel;
+    private Nivel nivel;
 
     @Lob
     @Column(name = "mensaje_tecnico")

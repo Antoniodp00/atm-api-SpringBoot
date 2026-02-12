@@ -1,5 +1,6 @@
 package com.dam.adp.atmapi.models;
 
+import com.dam.adp.atmapi.models.enums.TipoTransaccion;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -8,6 +9,7 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -25,14 +27,14 @@ public class Transaccion {
 
     @NotNull
     @Column(name = "fecha_hora", nullable = false)
-    private Instant fechaHora;
+    private LocalDateTime fechaHora;
 
     @Size(max = 20)
     @Column(name = "tipo", length = 20)
-    private String tipo;
+    private TipoTransaccion tipo;
 
     @Column(name = "monto", precision = 10, scale = 2)
-    private BigDecimal monto;
+    private Double monto;
 
     @Size(max = 64)
     @NotNull

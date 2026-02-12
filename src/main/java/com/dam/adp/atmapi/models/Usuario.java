@@ -1,5 +1,6 @@
 package com.dam.adp.atmapi.models;
 
+import com.dam.adp.atmapi.models.enums.Rol;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -34,10 +35,11 @@ public class Usuario {
     @Column(name = "nombre_completo", length = 150)
     private String nombreCompleto;
 
+    @Enumerated(EnumType.STRING)
     @Size(max = 20)
     @NotNull
     @Column(name = "rol", nullable = false, length = 20)
-    private String rol;
+    private Rol rol;
 
     @ColumnDefault("1")
     @Column(name = "activo")

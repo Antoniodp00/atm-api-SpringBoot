@@ -1,5 +1,6 @@
 package com.dam.adp.atmapi.models;
 
+import com.dam.adp.atmapi.models.enums.EstadoIncidencia;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -7,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -30,18 +32,19 @@ public class Incidencia {
 
     @NotNull
     @Column(name = "fecha_apertura", nullable = false)
-    private Instant fechaApertura;
+    private LocalDateTime fechaApertura;
 
     @Column(name = "fecha_cierre")
-    private Instant fechaCierre;
+    private LocalDateTime fechaCierre;
 
     @Size(max = 255)
     @Column(name = "descripcion")
     private String descripcion;
 
+    @Enumerated(EnumType.STRING)
     @Size(max = 30)
     @Column(name = "estado", length = 30)
-    private String estado;
+    private EstadoIncidencia estado;
 
     @Column(name = "prioridad")
     private Integer prioridad;

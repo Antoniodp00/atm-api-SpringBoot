@@ -1,6 +1,7 @@
 package com.dam.adp.atmapi.service;
 
 import com.dam.adp.atmapi.models.Usuario;
+import com.dam.adp.atmapi.models.enums.Rol;
 import com.dam.adp.atmapi.repositories.UsuarioRepository;
 import com.dam.adp.atmapi.services.UsuarioService;
 import org.junit.jupiter.api.Test;
@@ -32,7 +33,7 @@ class UsuarioServiceTest {
         Usuario usuarioNuevo = new Usuario();
         usuarioNuevo.setUsername("tecnico1");
         usuarioNuevo.setPassword("1234"); // Contraseña plana
-        usuarioNuevo.setRol("TECNICO");
+        usuarioNuevo.setRol(Rol.TECNICO);
 
         // Simulamos que el encoder devuelve un hash falso
         when(passwordEncoder.encode("1234")).thenReturn("$2a$10$FakeHashString...");
