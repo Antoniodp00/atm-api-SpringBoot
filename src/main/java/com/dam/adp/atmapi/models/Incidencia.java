@@ -1,6 +1,7 @@
 package com.dam.adp.atmapi.models;
 
 import com.dam.adp.atmapi.models.enums.EstadoIncidencia;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -42,13 +43,13 @@ public class Incidencia {
     private String descripcion;
 
     @Enumerated(EnumType.STRING)
-    @Size(max = 30)
     @Column(name = "estado", length = 30)
     private EstadoIncidencia estado;
 
     @Column(name = "prioridad")
     private Integer prioridad;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "incidencia")
     private Set<ConsumoRepuesto> consumoRepuestos = new LinkedHashSet<>();
 

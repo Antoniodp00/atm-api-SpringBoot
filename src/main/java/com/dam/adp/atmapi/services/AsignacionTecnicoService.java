@@ -11,13 +11,13 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 
 @Service
-public class AsignacionService {
+public class AsignacionTecnicoService {
     private final AsignacionTecnicoRepository asignacionTecnicoRepository;
     private final UsuarioService usuarioService;
     private final CajeroService cajeroService;
 
 
-    public AsignacionService(AsignacionTecnicoRepository asignacionTecnicoRepository, UsuarioService usuarioService, CajeroService cajeroService) {
+    public AsignacionTecnicoService(AsignacionTecnicoRepository asignacionTecnicoRepository, UsuarioService usuarioService, CajeroService cajeroService) {
         this.asignacionTecnicoRepository = asignacionTecnicoRepository;
         this.usuarioService = usuarioService;
         this.cajeroService = cajeroService;
@@ -31,8 +31,9 @@ public class AsignacionService {
         }
 
         Cajero cajero = cajeroService.obtenerDetalle(cajeroId);
-        if(asignacionTecnicoRepository.existsByFechaAsignacionAndTurno(tecnico, fecha, turno)){
-            throw  new IllegalArgumentException("El técnico ya tiene una asignación para ese día y turno");
+
+        if(asignacionTecnicoRepository.existsByUsuarioAndFechaAsignacionAndTurno(tecnico, fecha, turno)){
+            throw new IllegalArgumentException("El técnico ya tiene una asignación para ese día y turno");
         }
         AsignacionTecnico asignacion = new AsignacionTecnico();
         asignacion.setUsuario(tecnico);

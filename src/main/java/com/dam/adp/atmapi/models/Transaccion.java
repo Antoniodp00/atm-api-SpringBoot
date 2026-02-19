@@ -29,11 +29,12 @@ public class Transaccion {
     @Column(name = "fecha_hora", nullable = false)
     private LocalDateTime fechaHora;
 
-    @Size(max = 20)
+    @Enumerated(EnumType.STRING)
+    @NotNull
     @Column(name = "tipo", length = 20)
     private TipoTransaccion tipo;
 
-    @Column(name = "monto", precision = 10, scale = 2)
+    @Column(name = "monto")
     private Double monto;
 
     @Size(max = 64)

@@ -36,7 +36,6 @@ public class Usuario {
     private String nombreCompleto;
 
     @Enumerated(EnumType.STRING)
-    @Size(max = 20)
     @NotNull
     @Column(name = "rol", nullable = false, length = 20)
     private Rol rol;

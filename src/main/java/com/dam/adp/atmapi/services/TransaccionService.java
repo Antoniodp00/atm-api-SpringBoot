@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static java.util.UUID.randomUUID;
+
 @Service
 public class TransaccionService {
     private final TransaccionRepository transaccionRepository;
@@ -31,6 +33,8 @@ public class TransaccionService {
         transaccion.setTipo(tipoTransaccion);
         transaccion.setMonto(cantidad);
         transaccion.setFechaHora(LocalDateTime.now());
+        transaccion.setTarjetaHash(randomUUID().toString());
+        transaccion.setResultado("EXITOSA");
 
         return transaccionRepository.save(transaccion);
     }
@@ -42,6 +46,23 @@ public class TransaccionService {
         if (cajeroService.obtenerDetalle(idCajero) == null) {
             throw new IllegalArgumentException("El cajero no existe");
         }
-        return transaccionRepository.findByCajeroIdOrderByFechaHoraDesc(idCajero);
+        return transaccionRepository.findByAtmIdOrderByFechaHoraDesc(idCajero);
+    }
+
+    public long contarOperaciones(String cajeroId){
+        cajeroService.obtenerDetalle(cajeroId);
+        return  transaccionRepository.countByAtmId(cajeroId);
+    }
+
+    public double sumarIngresos(String cajeroId){
+        return transaccionRepository.sumarMontoPorCajeroYTipo(cajeroId, TipoTransaccion.INGRESO);
+    }
+
+    public double sumarRetiros(String cajeroId){
+        return transaccionRepository.sumarMontoPorCajeroYTipo(cajeroId, TipoTransaccion.RETIRO);
+    }
+
+    public double sumarTransferencias(String cajeroId){
+        return transaccionRepository.sumarMontoPorCajeroYTipo(cajeroId, TipoTransaccion.TRANSFERENCIA);
     }
 }

@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.time.LocalDate;
 
 public interface AsignacionTecnicoRepository extends JpaRepository<AsignacionTecnico, Long> {
-    boolean existsByFechaAsignacionAndTurno();
 
-    boolean existsByFechaAsignacionAndTurno(Usuario tecnico, LocalDate fecha, Turno turno);
+
+    boolean existsByUsuarioAndFechaAsignacionAndTurno(Usuario usuario, LocalDate fechaAsignacion, Turno turno);
 }

@@ -81,12 +81,12 @@ class TransaccionServiceTest {
         when(cajeroService.obtenerDetalle(idCajero)).thenReturn(cajeroMock);
 
         // Mockeamos el repositorio
-        when(transaccionRepository.findByCajeroIdOrderByFechaHoraDesc(idCajero)).thenReturn(List.of());
+        when(transaccionRepository.findByAtmIdOrderByFechaHoraDesc(idCajero)).thenReturn(List.of());
 
         // 2. WHEN
         transaccionService.obtenerHistorialCajero(idCajero);
 
         // 3. THEN
-        verify(transaccionRepository).findByCajeroIdOrderByFechaHoraDesc(idCajero);
+        verify(transaccionRepository).findByAtmIdOrderByFechaHoraDesc(idCajero);
     }
 }

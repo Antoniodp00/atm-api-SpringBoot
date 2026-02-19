@@ -5,7 +5,7 @@ import com.dam.adp.atmapi.models.Usuario;
 import com.dam.adp.atmapi.models.enums.Rol;
 import com.dam.adp.atmapi.models.enums.Turno;
 import com.dam.adp.atmapi.repositories.AsignacionTecnicoRepository;
-import com.dam.adp.atmapi.services.AsignacionService;
+import com.dam.adp.atmapi.services.AsignacionTecnicoService;
 import com.dam.adp.atmapi.services.CajeroService;
 import com.dam.adp.atmapi.services.UsuarioService;
 import org.junit.jupiter.api.Test;
@@ -21,14 +21,14 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class AsignacionServiceTest {
+class AsignacionTecnicoServiceTest {
 
     @Mock
     private AsignacionTecnicoRepository asignacionRepository;
     @Mock private UsuarioService usuarioService;
     @Mock private CajeroService cajeroService;
     @InjectMocks
-    private AsignacionService asignacionService;
+    private AsignacionTecnicoService asignacionTecnicoService;
 
     @Test
     void crearAsignacion_siYaExisteTurno_deberiaLanzarExcepcion() {
@@ -48,7 +48,7 @@ class AsignacionServiceTest {
 
         // WHEN & THEN
         assertThrows(IllegalStateException.class, () -> {
-            asignacionService.crearAsignacion(tecnicoId, cajeroId, turno, fecha);
+            asignacionTecnicoService.crearAsignacion(tecnicoId, cajeroId, turno, fecha);
         });
     }
 }

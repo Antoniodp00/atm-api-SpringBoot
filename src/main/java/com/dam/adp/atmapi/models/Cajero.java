@@ -1,5 +1,6 @@
 package com.dam.adp.atmapi.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -38,18 +39,19 @@ public class Cajero {
     @Column(name = "activo")
     private Boolean activo;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "cajero")
     private Set<AsignacionTecnico> asignacionTecnicos = new LinkedHashSet<>();
-
+    @JsonIgnore
     @OneToMany(mappedBy = "atm")
     private Set<EstadisticaDiaria> estadisticaDiarias = new LinkedHashSet<>();
-
+    @JsonIgnore
     @OneToMany(mappedBy = "atm")
     private Set<EventoLog> eventoLogs = new LinkedHashSet<>();
-
+    @JsonIgnore
     @OneToMany(mappedBy = "atm")
     private Set<Incidencia> incidencias = new LinkedHashSet<>();
-
+    @JsonIgnore
     @OneToMany(mappedBy = "atm")
     private Set<Transaccion> transaccions = new LinkedHashSet<>();
 
