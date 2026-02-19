@@ -7,6 +7,8 @@ import com.dam.adp.atmapi.repositories.UsuarioRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UsuarioService {
 
@@ -40,10 +42,33 @@ public class UsuarioService {
             usuario.setRol(Rol.TECNICO);
         }
     }
+
+    public Usuario desactivarUsuario(Long id) {
+        Usuario usuario = usuarioRepository.findById(id)
+                .orElseThrow(() -> new RecordNotFoundException("El usuario no existe", id));
+        usuario.setActivo(false);
+        usuarioRepository.save(usuario);
+        return usuario;
+    }
+
     public Usuario obtenerPorId(Long id){
         return usuarioRepository.findById(id)
                 .orElseThrow(() -> new RecordNotFoundException("El usuario no existe",id));
 
     }
+
+    public Usuario obtenerPorNombreUsuario(String username){
+        return usuarioRepository.findByUsername(username)
+                .orElseThrow(() -> new RecordNotFoundException("El usuario no existe",username));
+    }
+
+    public List<Usuario> obtenerTecnicosActivos(){
+        return usuarioRepository.findByActivoTrueAndRol(Rol.TECNICO);
+    }
+
+    public List<Usuario> obtenerAdminsActivos(){
+        return usuarioRepository.findByActivoTrueAndRol(Rol.ADMIN);
+    }
+
 
 }

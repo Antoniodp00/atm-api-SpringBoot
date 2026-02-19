@@ -1,6 +1,7 @@
 package com.dam.adp.atmapi.models;
 
 import com.dam.adp.atmapi.models.enums.Rol;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -44,9 +45,11 @@ public class Usuario {
     @Column(name = "activo")
     private Boolean activo;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "usuario")
     private Set<AsignacionTecnico> asignacionTecnicos = new LinkedHashSet<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "tecnico")
     private Set<Incidencia> incidencias = new LinkedHashSet<>();
 

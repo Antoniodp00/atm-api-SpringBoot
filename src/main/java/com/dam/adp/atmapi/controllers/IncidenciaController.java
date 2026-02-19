@@ -1,6 +1,7 @@
 package com.dam.adp.atmapi.controllers;
 
 import com.dam.adp.atmapi.models.Incidencia;
+import com.dam.adp.atmapi.models.enums.Turno;
 import com.dam.adp.atmapi.services.IncidenciaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +25,11 @@ public class IncidenciaController {
     public ResponseEntity<List<Incidencia>> obtenerIncidenciasPorCiudad(@PathVariable String ciudad) {
         return ResponseEntity.ok(incidenciaService.obtenerIncidenciasPorCiudad(ciudad));
     }
+    @GetMapping("/tecnico/{username}")
+    public ResponseEntity<List<Incidencia>> obtenerIncidenciasPorTecnico(@PathVariable String username) {
+        return ResponseEntity.ok(incidenciaService.obtenerIncidenciasPorTecnico(username));
+    }
+
 
     @PostMapping
     public ResponseEntity<Incidencia> crearIncidencia(@RequestBody CrearIncidenciaRequest request) {
@@ -43,7 +49,26 @@ public class IncidenciaController {
         return ResponseEntity.ok("Consumo registrado y stock actualizado correctamente");
     }
 
+    @PutMapping("/{id}/asignar-tecnico")
+    public ResponseEntity<Incidencia> asignarTecnico(
+            @PathVariable Long id,
+            @RequestBody AsignarTecnicoRequest request) {
 
-public record CrearIncidenciaRequest(String cajeroId, String descripcion, Integer prioridad){}
+        Incidencia actualizada = incidenciaService.asignarTecnicoAIncidencia(
+                id,
+                request.id(),
+                request.turno()
+        );
+        return ResponseEntity.ok(actualizada);
+    }
+
+    @PutMapping("/{id}/resolver")
+    public ResponseEntity<Incidencia> resolverIncidencia(@PathVariable Long id){
+        return ResponseEntity.ok(incidenciaService.resolverIncidencia(id));
+    }
+
+
+    public record CrearIncidenciaRequest(String cajeroId, String descripcion, Integer prioridad){}
     public record ConsumoRequest(Long repuestoId, Integer cantidad){}
+    public record AsignarTecnicoRequest(Long id, Turno turno) {}
 }
