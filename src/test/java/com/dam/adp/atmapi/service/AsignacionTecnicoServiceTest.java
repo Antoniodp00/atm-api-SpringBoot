@@ -44,7 +44,7 @@ class AsignacionTecnicoServiceTest {
         when(usuarioService.obtenerPorId(tecnicoId)).thenReturn(tecnico);
         when(cajeroService.obtenerDetalle(cajeroId)).thenReturn(new Cajero());
         // Simulamos que ya existe la asignación
-        when(asignacionRepository.existsByFechaAsignacionAndTurno(any(), any(), any())).thenReturn(true);
+        when(asignacionRepository.existsByUsuarioAndFechaAsignacionAndTurno(any(), any(), any())).thenReturn(true);
 
         // WHEN & THEN
         assertThrows(IllegalStateException.class, () -> {
