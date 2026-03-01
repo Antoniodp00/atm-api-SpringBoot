@@ -2,6 +2,7 @@ package com.dam.adp.atmapi.services;
 
 import com.dam.adp.atmapi.exceptions.RecordNotFoundException;
 import com.dam.adp.atmapi.models.Cajero;
+import com.dam.adp.atmapi.models.enums.EstadoIncidencia;
 import com.dam.adp.atmapi.repositories.CajeroRepository;
 import org.springframework.stereotype.Service;
 
@@ -57,6 +58,16 @@ public class CajeroService {
         return cajeroRepository.save(cajero);
     }
 
+    public Cajero activarCajero(String id){
+        Cajero cajero = obtenerDetalle(id);
+        cajero.setActivo(true);
+        return cajeroRepository.save(cajero);
+    }
+
+    public List<Cajero> obtenerCajerosCriticos(Integer prioridadMinima) {
+        // Buscamos cajeros con prioridad >= a la que nos pidan, y que su estado NO sea RESUELTA
+        return cajeroRepository.findCajerosConIncidenciasGraves(prioridadMinima, EstadoIncidencia.RESUELTA);
+    }
 
 
 }

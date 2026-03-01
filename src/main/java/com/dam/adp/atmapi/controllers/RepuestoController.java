@@ -4,10 +4,9 @@ import com.dam.adp.atmapi.models.Repuesto;
 import com.dam.adp.atmapi.services.RepuestoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/repuestos")
@@ -19,7 +18,20 @@ public class RepuestoController {
         this.repuestoService = repuestoService;
     }
 
+    @GetMapping
+    public ResponseEntity<List<Repuesto>> obtenerTodos(){
+        return ResponseEntity.ok(repuestoService.obtenerTodos());
+    }
+
+    @GetMapping("/ciudad/{ciudad}")
+    public ResponseEntity<List<Repuesto>> findRepuestosUtilizadosEnCiudad(@PathVariable String ciudad) {
+        return ResponseEntity.ok(repuestoService.findRepuestosUtilizadosEnCiudad(ciudad));
+    }
+
+
+
     @PostMapping
     public ResponseEntity<Repuesto> crearRepuesto(@RequestBody Repuesto repuesto){
         return new ResponseEntity<>(repuestoService.crearRepuesto(repuesto), HttpStatus.CREATED);
     }}
+

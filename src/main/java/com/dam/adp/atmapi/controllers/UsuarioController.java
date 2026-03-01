@@ -40,13 +40,15 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioService.obtenerAdminsActivos());
     }
 
+    @GetMapping("/tecnicos/sobrecargados")
+    public ResponseEntity<List<Usuario>> obtenerTecnicosSobrecargados() {
+        return ResponseEntity.ok(usuarioService.obtenerTecnicosSobrecargados(2L));
+    }
     @PostMapping
     public ResponseEntity<Usuario> crearUsuario(@RequestBody Usuario usuario) {
         Usuario nuevoUsuario = usuarioService.registrarUsuario(usuario);
         return ResponseEntity.ok(nuevoUsuario);
     }
-
-
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Usuario>desactivarUsuario(@PathVariable Long id){

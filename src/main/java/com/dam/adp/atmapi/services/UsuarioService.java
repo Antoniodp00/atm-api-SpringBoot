@@ -70,5 +70,8 @@ public class UsuarioService {
         return usuarioRepository.findByActivoTrueAndRol(Rol.ADMIN);
     }
 
+    public List<Usuario> obtenerTecnicosSobrecargados(Long cantidadIncidencias){
+        return usuarioRepository.findTecnicosSobrecargados(cantidadIncidencias);
+    }
 
 }

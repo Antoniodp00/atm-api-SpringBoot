@@ -45,4 +45,9 @@ public class RepuestoService {
     public List<Repuesto> obtenerTodos(){
         return repuestoRepository.findAll();
     }
-}
+
+    public List<Repuesto> findRepuestosUtilizadosEnCiudad(String ciudad) {
+        return repuestoRepository.findRepuestosUtilizadosEnCiudad(ciudad);
+    }
+    }
+

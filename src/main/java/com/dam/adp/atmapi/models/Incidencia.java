@@ -3,6 +3,8 @@ package com.dam.adp.atmapi.models;
 import com.dam.adp.atmapi.models.enums.EstadoIncidencia;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
@@ -46,6 +48,8 @@ public class Incidencia {
     @Column(name = "estado", length = 30)
     private EstadoIncidencia estado;
 
+    @Min(1)
+    @Max(10)
     @Column(name = "prioridad")
     private Integer prioridad;
 

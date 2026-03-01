@@ -38,6 +38,11 @@ public class CajeroController {
         return ResponseEntity.ok(cajeroService.obtenerTodos());
     }
 
+    @GetMapping("/criticos/{prioridad}")
+    public ResponseEntity<List<Cajero>> obtenerCajerosCriticos(@PathVariable Integer prioridad) {
+    return ResponseEntity.ok(cajeroService.obtenerCajerosCriticos(prioridad));
+    }
+
     @PostMapping
     public ResponseEntity<Cajero> crearCajero(@RequestBody Cajero cajero){
         Cajero nuevoCajero = cajeroService.crearCajero(cajero);
@@ -49,4 +54,11 @@ public class CajeroController {
         Cajero cajeroDesactivado = cajeroService.desactivarCajero(id);
         return ResponseEntity.ok(cajeroDesactivado);
     }
+    @PutMapping("/{id}")
+    public ResponseEntity<Cajero> activarCajero(@PathVariable String id){
+        Cajero cajeroActivado = cajeroService.activarCajero(id);
+        return ResponseEntity.ok(cajeroActivado);
+    }
+
+
 }
