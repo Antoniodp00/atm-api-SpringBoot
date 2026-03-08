@@ -5,6 +5,10 @@ import io.swagger.v3.oas.annotations.info.Info;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * Clase principal de la aplicación Spring Boot para la API del Sistema de Cajeros (ATM).
+ * Configura la aplicación y define la información básica para la documentación OpenAPI.
+ */
 @SpringBootApplication
 @OpenAPIDefinition(
         info = @Info(

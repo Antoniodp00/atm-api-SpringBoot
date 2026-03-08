@@ -10,6 +10,10 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 
+/**
+ * Servicio para la gestión de asignaciones de técnicos a cajeros.
+ * Permite programar turnos y asignar personal de mantenimiento.
+ */
 @Service
 public class AsignacionTecnicoService {
     private final AsignacionTecnicoRepository asignacionTecnicoRepository;
@@ -23,6 +27,15 @@ public class AsignacionTecnicoService {
         this.cajeroService = cajeroService;
     }
 
+    /**
+     * Crea una nueva asignación de técnico a un cajero.
+     * Valida que el usuario sea técnico y no tenga conflictos de horario.
+     * @param usuarioId Identificador del técnico.
+     * @param cajeroId Identificador del cajero.
+     * @param turno Turno de trabajo.
+     * @param fecha Fecha de la asignación.
+     * @return La asignación creada.
+     */
     public AsignacionTecnico crearAsignacion(Long usuarioId, String cajeroId, Turno turno, LocalDate fecha){
         Usuario tecnico = usuarioService.obtenerPorId(usuarioId);
         if (tecnico.getRol() != Rol.TECNICO){

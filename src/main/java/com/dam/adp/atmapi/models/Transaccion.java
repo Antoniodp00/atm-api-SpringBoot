@@ -11,6 +11,10 @@ import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.LocalDateTime;
 
+/**
+ * Entidad que registra las transacciones realizadas en los cajeros.
+ * Almacena información sobre el tipo de transacción, monto y resultado.
+ */
 @Getter
 @Setter
 @Entity

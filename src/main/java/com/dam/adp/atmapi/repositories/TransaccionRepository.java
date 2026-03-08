@@ -8,6 +8,10 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
+/**
+ * Repositorio JPA para la entidad Transaccion.
+ * Permite registrar y consultar transacciones financieras.
+ */
 public interface TransaccionRepository extends JpaRepository<Transaccion, Long> {
     List<Transaccion> findByAtmIdOrderByFechaHoraDesc(String cajeroId);
 

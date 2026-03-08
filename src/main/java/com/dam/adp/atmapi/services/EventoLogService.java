@@ -8,6 +8,10 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 
+/**
+ * Servicio para el registro y gestión de logs de eventos.
+ * Permite almacenar información sobre errores y actividades del sistema.
+ */
 @Service
 public class EventoLogService {
     private final EventoLogRepository eventoLogRepository;
@@ -18,6 +22,13 @@ public class EventoLogService {
         this.cajeroService = cajeroService;
     }
 
+    /**
+     * Registra un nuevo evento en el log del sistema.
+     * @param cajeroId Identificador del cajero asociado (opcional).
+     * @param nivel Nivel de severidad del evento.
+     * @param mensaje Descripción técnica del evento.
+     * @param codigo Código de error asociado.
+     */
     public void registrarEvento(String cajeroId, Nivel nivel, String mensaje, String codigo ){
         EventoLog log = new EventoLog();
 

@@ -7,6 +7,10 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
+/**
+ * Repositorio JPA para la entidad Repuesto.
+ * Gestiona el acceso a datos de inventario y consumo de repuestos.
+ */
 public interface RepuestoRepository extends JpaRepository<Repuesto, Long> {
 
     boolean existsByNombre(String nombre);

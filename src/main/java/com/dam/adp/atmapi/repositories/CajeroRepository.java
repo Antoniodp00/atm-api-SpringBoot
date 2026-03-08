@@ -8,6 +8,10 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
+/**
+ * Repositorio JPA para la entidad Cajero.
+ * Proporciona métodos para consultar y gestionar cajeros en la base de datos.
+ */
 public interface CajeroRepository  extends JpaRepository<Cajero, String> {
 
     List<Cajero> findByActivoTrue();

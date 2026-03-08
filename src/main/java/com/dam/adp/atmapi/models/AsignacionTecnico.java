@@ -10,6 +10,10 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 
+/**
+ * Entidad que representa la asignación de un técnico a un cajero.
+ * Incluye información sobre el turno y la fecha de asignación.
+ */
 @Getter
 @Setter
 @Entity

@@ -15,6 +15,10 @@ import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+/**
+ * Entidad que representa una incidencia reportada en un cajero.
+ * Contiene información sobre el estado, prioridad y técnico asignado.
+ */
 @Getter
 @Setter
 @Entity

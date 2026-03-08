@@ -5,6 +5,10 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Entidad que registra el consumo de repuestos en una incidencia.
+ * Relaciona una incidencia con los repuestos utilizados y la cantidad.
+ */
 @Getter
 @Setter
 @Entity

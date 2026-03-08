@@ -12,6 +12,10 @@ import org.hibernate.annotations.ColumnDefault;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+/**
+ * Entidad que representa un usuario del sistema.
+ * Incluye información de autenticación, rol y datos personales.
+ */
 @Getter
 @Setter
 @Entity

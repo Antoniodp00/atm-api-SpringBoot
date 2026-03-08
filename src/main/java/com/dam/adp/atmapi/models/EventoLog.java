@@ -10,6 +10,10 @@ import lombok.Setter;
 import java.time.Instant;
 import java.time.LocalDateTime;
 
+/**
+ * Entidad que registra los eventos y logs generados por los cajeros.
+ * Almacena información sobre errores, advertencias y mensajes técnicos.
+ */
 @Getter
 @Setter
 @Entity

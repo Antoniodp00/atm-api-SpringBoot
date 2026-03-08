@@ -10,6 +10,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Repositorio JPA para la entidad Usuario.
+ * Permite realizar operaciones CRUD y consultas personalizadas sobre usuarios.
+ */
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     boolean existsByUsername(String username);

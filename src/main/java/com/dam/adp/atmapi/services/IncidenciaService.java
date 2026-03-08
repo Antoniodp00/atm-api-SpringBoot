@@ -17,6 +17,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * Servicio para la gestión de incidencias técnicas.
+ * Maneja la creación, asignación, resolución y consumo de repuestos en incidencias.
+ */
 @Service
 public class IncidenciaService {
 
@@ -38,6 +42,13 @@ public class IncidenciaService {
         this.asignacionTecnicoService = asignacionTecnicoService;
     }
 
+    /**
+     * Crea una nueva incidencia para un cajero específico.
+     * @param idCajero Identificador del cajero.
+     * @param descripcion Descripción del problema.
+     * @param prioridad Nivel de prioridad de la incidencia.
+     * @return La incidencia creada.
+     */
     public Incidencia crearIncidencia(String idCajero, String descripcion, Integer prioridad) {
         Cajero cajero = cajeroService.obtenerDetalle(idCajero);
 
@@ -56,6 +67,13 @@ public class IncidenciaService {
         return incidenciaRepository.save(incidencia);
     }
 
+    /**
+     * Procesa el consumo de un repuesto en una incidencia.
+     * Actualiza el stock del repuesto y registra el consumo.
+     * @param incidenciaId Identificador de la incidencia.
+     * @param repuestoId Identificador del repuesto.
+     * @param cantidad Cantidad consumida.
+     */
     @Transactional
     public void procesarConsumo(Long incidenciaId, Long repuestoId, Integer cantidad) {
         Incidencia incidencia = incidenciaRepository.findById(incidenciaId)
@@ -83,6 +101,11 @@ public class IncidenciaService {
         consumoRepuestoRepository.save(consumo);
     }
 
+    /**
+     * Obtiene las incidencias reportadas en una ciudad específica.
+     * @param ciudad Nombre de la ciudad.
+     * @return Lista de incidencias en esa ubicación.
+     */
     public List<Incidencia> obtenerIncidenciasPorCiudad(String ciudad) {
         if (ciudad == null || ciudad.trim().isEmpty()){
             throw new IllegalArgumentException("La ciudad no puede estar vacía");
@@ -90,6 +113,13 @@ public class IncidenciaService {
         return incidenciaRepository.findByCiudad(ciudad);
     }
 
+    /**
+     * Asigna un técnico a una incidencia y registra la asignación.
+     * @param incidenciaId Identificador de la incidencia.
+     * @param tecnicoId Identificador del técnico.
+     * @param turno Turno de trabajo asignado.
+     * @return La incidencia actualizada con el técnico asignado.
+     */
     @Transactional
     public Incidencia asignarTecnicoAIncidencia(Long incidenciaId, Long tecnicoId, Turno turno) {
         Incidencia incidencia = incidenciaRepository.findById(incidenciaId)
@@ -108,6 +138,11 @@ public class IncidenciaService {
         return incidenciaRepository.save(incidencia);
     }
 
+    /**
+     * Marca una incidencia como resuelta y registra la fecha de cierre.
+     * @param incidenciaId Identificador de la incidencia.
+     * @return La incidencia actualizada con estado resuelto.
+     */
     public Incidencia resolverIncidencia(Long incidenciaId){
         Incidencia incidencia = incidenciaRepository.findById(incidenciaId)
                 .orElseThrow(() -> new RecordNotFoundException("Incidencia no encontrada, ID: ", incidenciaId));
@@ -120,9 +155,13 @@ public class IncidenciaService {
 
     }
 
+    /**
+     * Obtiene las incidencias asignadas a un técnico específico.
+     * @param username Nombre de usuario del técnico.
+     * @return Lista de incidencias asignadas al técnico.
+     */
     public List<Incidencia> obtenerIncidenciasPorTecnico(String username) {
         return incidenciaRepository.findByTecnicoUsernameAndRol(username, Rol.TECNICO);
     }
 
 }
-

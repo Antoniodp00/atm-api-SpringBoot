@@ -9,6 +9,10 @@ import org.hibernate.annotations.ColumnDefault;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+/**
+ * Entidad que almacena las estadísticas diarias de operación de un cajero.
+ * Incluye datos como el total de operaciones, volumen de dinero y tasa de fallos.
+ */
 @Getter
 @Setter
 @Entity

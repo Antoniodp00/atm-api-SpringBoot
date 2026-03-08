@@ -9,6 +9,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * Repositorio JPA para la entidad Incidencia.
+ * Proporciona métodos para gestionar incidencias y realizar consultas filtradas.
+ */
 @Repository
 public interface IncidenciaRepository extends JpaRepository<Incidencia, Long> {
 

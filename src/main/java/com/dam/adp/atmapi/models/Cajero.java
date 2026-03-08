@@ -11,6 +11,10 @@ import org.hibernate.annotations.ColumnDefault;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+/**
+ * Entidad que representa un cajero automático en el sistema.
+ * Contiene información sobre la ubicación, modelo y estado del cajero.
+ */
 @Getter
 @Setter
 @Entity

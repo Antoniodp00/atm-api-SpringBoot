@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Manejador global de excepciones para la API.
+ * Captura y formatea las excepciones lanzadas por los controladores.
+ */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
     //Captura la excepcion personalizada de "No encontrado"

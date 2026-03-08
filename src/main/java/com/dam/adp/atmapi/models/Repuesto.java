@@ -9,6 +9,10 @@ import org.hibernate.annotations.ColumnDefault;
 
 import java.math.BigDecimal;
 
+/**
+ * Entidad que representa un repuesto disponible en el inventario.
+ * Contiene información sobre la referencia, nombre, stock y precio.
+ */
 @Getter
 @Setter
 @Entity
